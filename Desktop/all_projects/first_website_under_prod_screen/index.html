@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Under Construction</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(270deg, #f0f4ff, #e1f7f5, #f9e0f0, #f0f4ff);
+    background-size: 800% 800%;
+    animation: gradientFlow 18s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 50px;
+    z-index: 10;
+  }
+
+  .loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+
+  .type-text {
+    font-size: 2rem;
+    color: #333;
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 90%;
+    text-align: center;
+    white-space: pre-wrap;
+  }
+
+  @media (max-width: 600px) {
+    .logo {
+      height: 40px;
+      top: 15px;
+      left: 15px;
+    }
+
+    .type-text {
+      font-size: 1.4rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Logo -->
+  <img src="logo.png" alt="Logo" class="logo" />
+
+  <!-- Loader GIF -->
+  <div class="loader-container" id="loader">
+    <img src="loader.gif" id="loader-gif" />
+  </div>
+
+  <!-- Type Text -->
+  <div class="type-text" id="typewriter"></div>
+
+  <script>
+    // GIF control
+    const loader = document.getElementById('loader');
+    const gif = document.getElementById('loader-gif');
+    const typewriter = document.getElementById('typewriter');
+
+    const message = "🚧 Website under production 🚧";
+    let index = 0;
+
+    // Typing function (like GPT)
+    function typeNextChar() {
+      if (index < message.length) {
+        typewriter.textContent += message.charAt(index);
+        index++;
+        setTimeout(typeNextChar, 70); // speed typewrittter
+      }
+    }
+
+    // Wait for gif, then hide + start typing
+    gif.addEventListener('load', () => {
+      setTimeout(() => {
+        loader.style.display = 'none';
+        typeNextChar();
+      }, 3000); // GIF duration
+    });
+  </script>
+</body>
+</html>
